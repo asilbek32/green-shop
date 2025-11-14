@@ -1,4 +1,3 @@
-import Header from "../../components/header";
 import ProductCardItem from "../../components/product-card-item";
 import CartTotal from "../../components/product-card-item/card-total";
 
