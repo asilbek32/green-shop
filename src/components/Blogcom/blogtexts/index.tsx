@@ -7,7 +7,7 @@ import BlogCard from "../blog-card";
 function BlogTexts() {
   const { paramValue } = useSearchParam();
   const search: string = paramValue("search") ?? "";
-  const { data, isError, isLoading }: DataType<BlogTypeItem> = useQueryHendler({
+  const { data, isError, isLoading }: DataType<BlogTypeItem[]> = useQueryHendler({
     url: "user/blog",
     pathname: `/blog?search=${search}`,
     params: { search },
