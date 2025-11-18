@@ -3,6 +3,7 @@ import Home from "../pages/home";
 import Shop from "../pages/shop";
 import Blog from "../pages/blog/idex";
 import MainLayout from "../components/main-layout";
+import FlowerINfo from "../pages/shop-card";
 
 export const router = createBrowserRouter([
   {
@@ -20,6 +21,10 @@ export const router = createBrowserRouter([
       {
         path: "/blog",
         element: <Blog />,
+      },
+      {
+        path: "/shop/:category/:flower_id",
+        element:<FlowerINfo/>
       },
     ],
   },

@@ -66,3 +66,29 @@ export const useSignWithGoogle = () => {
     },
   });
 };
+
+export const useRegisterWithGoogle = () => {
+  const axios = useAxios();
+  const dispatch = useReduxDispatch();
+
+  return useMutation({
+    mutationKey: ["register-google"],
+
+    mutationFn: async () => {
+      const res = await signInWithGoogle();
+      return axios({
+        url: "user/sign-up/google",
+        body: { email: res.user.email },
+        method: "POST",
+      }).then((res) => res.data.data);
+    },
+
+    onSuccess: (data: { token: string; user: object }) => {
+      const { token, user } = data;
+
+      Cookies.set("user", JSON.stringify(user), { expires: 0.0833 });
+      Cookies.set("token", token, { expires: 0.0833 });
+      dispatch(authorizationModalVisibltiyConf());
+    },
+  });
+};

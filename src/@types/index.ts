@@ -77,7 +77,6 @@ export interface PlantsType {
   path: string;
 }
 
-
 export interface BlogTypeItem {
   _id: string;
   _v: number;
@@ -88,4 +87,40 @@ export interface BlogTypeItem {
   created_by: string;
   created_at: string;
   content: string;
+}
+
+export interface ShopProductType {
+  isError?: boolean;
+  isLoading?: boolean;
+  data?: ProductType;
+}
+
+export interface WishListItemType {
+  flower_id: string;
+  route_path: string;
+}
+
+export interface AuthUser {
+  _id?: string;
+  email?: string;
+  name?: string;
+  surname?: string;
+  profile_photo?: string;
+  create_account_limit?: number;
+  phone_number?: string;
+  wishlist?: WishListItemType[];
+  username?: string;
+  country?: string;
+  town?: string;
+  street_address?: string;
+  additional_street_address?: string;
+  state?: string;
+  zip?: string;
+  followers?: string[];
+  permission?: {
+    create: boolean;
+    update: boolean;
+    delete: boolean;
+    read: boolean;
+  };
 }

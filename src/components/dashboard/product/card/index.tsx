@@ -8,12 +8,17 @@ import type { ProductType } from "../../../../@types";
 import { useReduxDispatch } from "../../../../hooks/userRedux";
 import { getData } from "../../../../redux/product-slice";
 import { notificationApi } from "../../../../generic/notification";
+import { useNavigate } from "react-router-dom";
 
 const Card: FC<ProductType> = (props) => {
   const icon_style =
     "bg-[#FFFFFF] w-[35px] h-[35px] flex rounded-lg justify-center items-center  cursor-pointer text-[20px]";
   const dispatch = useReduxDispatch();
   const notify = notificationApi();
+  const navigate = useNavigate();
+  const navigetToFloweInfo = (category: string, _id: string) => {
+    navigate(`/shop/${category}/${_id}`);
+  };
   return (
     <>
       <div className="relative">
@@ -32,7 +37,9 @@ const Card: FC<ProductType> = (props) => {
             <div className={`${icon_style}`}>
               <HeartOutlined />
             </div>
-            <div className={`${icon_style}`}>
+            <div className={`${icon_style}`}
+            onClick={()=> navigetToFloweInfo(props.category, props._id)}
+            >
               <SearchOutlined />
             </div>
           </div>
