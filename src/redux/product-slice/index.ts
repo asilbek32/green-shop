@@ -62,9 +62,21 @@ export const prodcut_slice = createSlice({
       );
       localStorage.setItem("shop", JSON.stringify(state.data));
     },
+    removeShopData(state) {
+      state.data = [];
+      state.coupon = 0;
+      localStorage.removeItem("shop");
+    },
   },
 });
 
-export const { getData, removeData, getCouponCode, incrementCount, decrementCount} = prodcut_slice.actions;
+export const {
+  getData,
+  removeData,
+  getCouponCode,
+  incrementCount,
+  decrementCount,
+  removeShopData,
+} = prodcut_slice.actions;
 
 export default prodcut_slice.reducer;

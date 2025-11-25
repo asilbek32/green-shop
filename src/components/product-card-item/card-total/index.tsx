@@ -91,7 +91,7 @@ const CartTotal = () => {
           </h1>
         </div>
         <button
-        onClick={()=> user ? novigate("/") : dispatch(authorizationModalVisibltiyConf())}
+        onClick={()=> user ? novigate("/product-checkout") : dispatch(authorizationModalVisibltiyConf())}
          className="bg-[#46A358] flex rounded-md items-center justify-center gap-1 text-base text-white w-full h-10 mt-[30px] cursor-pointer">
           Proceed To Checkout
         </button>

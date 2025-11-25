@@ -16,7 +16,7 @@ const Card: FC<ProductType> = (props) => {
   const dispatch = useReduxDispatch();
   const notify = notificationApi();
   const navigate = useNavigate();
-  const navigetToFloweInfo = (category: string, _id: string) => {
+  const navigetToFlowerInfo = (category: string, _id: string) => {
     navigate(`/shop/${category}/${_id}`);
   };
   return (
@@ -38,7 +38,7 @@ const Card: FC<ProductType> = (props) => {
               <HeartOutlined />
             </div>
             <div className={`${icon_style}`}
-            onClick={()=> navigetToFloweInfo(props.category, props._id)}
+            onClick={()=> navigetToFlowerInfo(props.category, props._id)}
             >
               <SearchOutlined />
             </div>

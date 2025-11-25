@@ -10,16 +10,15 @@ import {
 } from "@ant-design/icons";
 import { useReduxDispatch, useReduxSelector } from "../../hooks/userRedux";
 import { authorizationModalVisibltiyConf } from "../../redux/modal-slice";
-import Cookies from "js-cookie";
 import { Badge } from "antd";
 
 const Header = () => {
   const { data } = useReduxSelector((state) => state.product_slice);
+  const { user } = useReduxSelector((state) => state.userSlice);
+
   const dispatch = useReduxDispatch();
   const navigate = useNavigate();
   const [sidebarOpen, setSidebarOpen] = useState(false);
-  const userCookie = Cookies.get("user");
-  const user = userCookie ? JSON.parse(userCookie) : null;
 
   return (
     <header className="border-b border-[#00800043] py-3 relative">
@@ -47,10 +46,16 @@ const Header = () => {
           </Badge>
 
           <button
-            onClick={() => dispatch(authorizationModalVisibltiyConf())}
+            onClick={() =>
+              user
+                ? navigate("/profile")
+                : dispatch(authorizationModalVisibltiyConf())
+            }
             className="text-white w-[100px] h-[35px] bg-[#46A358] flex items-center gap-1 justify-center rounded-md cursor-pointer"
           >
-            {user ? user?.name : (
+            {user ? (
+              user?.name
+            ) : (
               <>
                 <LoginOutlined />
                 Login
@@ -97,16 +102,26 @@ const Header = () => {
           <BellOutlined className="text-lg" />
           <Badge count={data?.length}>
             <ShoppingCartOutlined
-              onClick={() => { navigate("/shop"); setSidebarOpen(false); }}
+              onClick={() => {
+                navigate("/shop");
+                setSidebarOpen(false);
+              }}
               className="text-lg"
             />
           </Badge>
 
           <button
-            onClick={() => { dispatch(authorizationModalVisibltiyConf()); setSidebarOpen(false); }}
+            onClick={() => {
+              user
+                ? navigate("/profile")
+                : dispatch(authorizationModalVisibltiyConf());
+              setSidebarOpen(false);
+            }}
             className="text-white w-full h-10 bg-[#46A358] flex items-center gap-1 justify-center rounded-md mt-4"
           >
-            {user ? user?.name : (
+            {user ? (
+              user?.name
+            ) : (
               <>
                 <LoginOutlined />
                 Login
